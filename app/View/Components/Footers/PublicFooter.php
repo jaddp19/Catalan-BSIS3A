@@ -1,12 +1,12 @@
 <?php
 
-namespace App\View\Components\Header;
+namespace App\View\Components\Footers;
 
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class AdminHeader extends Component
+class PublicFooter extends Component
 {
     /**
      * Create a new component instance.
@@ -21,6 +21,6 @@ class AdminHeader extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.header.admin-header');
+        return view('components.footers.public-footer');
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\View\Components\Footer;
+namespace App\View\Components\Footers;
 
 use Closure;
 use Illuminate\Contracts\View\View;
@@ -21,6 +21,6 @@ class AdminFooter extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.footer.admin-footer');
+        return view('components.footers.admin-footer');
     }
 }

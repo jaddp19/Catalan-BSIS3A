@@ -30,11 +30,10 @@ return [
     */
 
     'component_namespaces' => [
-        'layouts' => resource_path('views/layouts'),
-        'pages' => resource_path('views/pages'),
-        'admin' => resource_path('views/admin'),
-        'public' => resource_path('views/public'),
-
+    'layouts' => resource_path('views/layouts'),
+    'pages'   => resource_path('views/pages'),
+    'public'  => resource_path('views/public'),
+    'admin'   => resource_path('views/admin'),
     ],
 
     /*
