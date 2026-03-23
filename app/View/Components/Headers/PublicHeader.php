@@ -1,6 +1,6 @@
 <?php
 
-namespace App\View\Components\Header;
+namespace App\View\Components\Headers;
 
 use Closure;
 use Illuminate\Contracts\View\View;
@@ -21,6 +21,6 @@ class PublicHeader extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.header.public-header');
+        return view('components.headers.public-header');
     }
 }
