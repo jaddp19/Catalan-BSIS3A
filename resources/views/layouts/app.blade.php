@@ -17,14 +17,12 @@
     @livewireStyles
 </head>
 
-<body class="bg-white dark:bg-black">
-
-    @include('components.headers.admin-header')
-    <main class="min-h-screen p-8">
+<body>
+    <main>
+        <x-headers.public-header />
         {{ $slot }}
+        <x-footers.public-footer />
     </main>
-    @include('components.footers.admin-footer')
-
     @livewireScripts
 </body>
 
