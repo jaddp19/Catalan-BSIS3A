@@ -2,16 +2,13 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class BookingDetail extends Model
 {
-    protected $fillable = [
-        'booking_id',
-        'event_id',
-        'quantity',
-    ];
+    #[Fillable(['booking_id','event_id','quantity',])]
 
     public function booking(): BelongsTo
 {

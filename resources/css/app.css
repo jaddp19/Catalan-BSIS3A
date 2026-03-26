@@ -30,3 +30,16 @@
 @custom-variant hover (&:hover);
 
 @custom-variant dark (&:where(.dark, .dark *));
+
+#header-link:hover, #btn-learnmore:hover{
+  background:#6E9104;
+}
+#btn-explore:hover, #btn-view:hover, #btn-reserve:hover, #customize:hover, button:hover{
+  background:#85af06 ;
+}
+#btn-cancel{
+  background-color: red;
+}
+#btn-cancel:hover{
+  background-color: rgb(255, 68, 68);
+}
