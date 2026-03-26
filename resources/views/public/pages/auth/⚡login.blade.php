@@ -67,8 +67,7 @@ new class extends Component
                             <span class="ml-3 text-xs text-gray-500 hover:text-gray-300 transition-colors">Remember this device</span>
                         </label>
                     </div>
-
-                    
+             
                     <div class="flex flex-col sm:flex-row gap-4 pt-2">
                         <button type="submit" 
                             class="flex-[2] bg-[#84a31a] hover:bg-[#96b81d] text-white py-4 rounded-md font-bold text-xs uppercase tracking-[0.2em] transition-all transform active:scale-95 shadow-lg shadow-lime-900/20">
