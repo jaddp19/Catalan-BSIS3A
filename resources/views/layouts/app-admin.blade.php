@@ -19,11 +19,11 @@
 
 <body class="bg-white dark:bg-black">
 
-    @include('components.headers.public-header')
+    @include('components.headers.admin-header')
     <main class="min-h-screen p-8">
         {{ $slot }}
     </main>
-    @include('components.footers.public-footer')
+    @include('components.footers.admin-footer')
 
     @livewireScripts
 </body>
