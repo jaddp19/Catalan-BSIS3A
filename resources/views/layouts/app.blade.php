@@ -24,6 +24,7 @@
         <x-footers.public-footer />
     </main>
     @livewireScripts
+    <script src="https://unpkg.com/preline/dist/preline.js"></script>
 </body>
 
 </html>

@@ -39,7 +39,7 @@ new class extends Component
 
   <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
     <div class="flex flex-col overflow-hidden transition shadow-sm -gray-200 rounded-xl hover:shadow-md bg-white dark:bg-neutral-100">
-      <img class="object-cover w-full h-72" src="hero.jpg" alt="Hero">
+      <img class="object-cover w-full h-72" src="https://thewoksoflife.com/wp-content/uploads/2017/04/beef-noodle-soup-16.jpg" alt="Hero">
       <div class="p-5 ">
         <h3 class="text-lg font-semibold text-neutral-900 dark:text-neutral-900">Braised Beef Brisket Soup</h3>
          <div>
