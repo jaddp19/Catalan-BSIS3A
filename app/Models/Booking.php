@@ -2,14 +2,13 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Booking extends Model
 {
-    #[Fillable(['user_id', 'event_date','event_location','status'])]
+    protected $fillable = ['user_id', 'event_date', 'event_location', 'status'];
 
     public function user(): BelongsTo
 {
@@ -18,11 +17,11 @@ class Booking extends Model
 
 public function bookingDetails(): HasMany
 {
-    return $this->hasMany(BookingDetail::class);
+    return $this->hasMany(BookingDetail::class, 'booking_id', 'id');
 }
 
 public function payments(): HasMany
 {
-    return $this->hasMany(Payment::class);
+    return $this->hasMany(Payment::class, 'booking_id', 'id');
 }
 }

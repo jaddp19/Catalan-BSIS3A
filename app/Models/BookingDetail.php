@@ -8,16 +8,16 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class BookingDetail extends Model
 {
-    #[Fillable(['booking_id','event_id','quantity',])]
+    #[Fillable(['booking_id','service_id','quantity',])]
 
     public function booking(): BelongsTo
 {
-    return $this->belongsTo(Booking::class);
+    return $this->belongsTo(Booking::class, 'booking_id', 'id');
 }
 
 public function service(): BelongsTo
 {
-    return $this->belongsTo(Service::class, 'event_id');
+    return $this->belongsTo(Service::class, 'service_id', 'id');
 }
 
 }

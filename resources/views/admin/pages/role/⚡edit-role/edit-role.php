@@ -1,13 +1,15 @@
 <?php
 
+use Illuminate\Support\Str;
 use Livewire\Attributes\Computed;
+use Livewire\Attributes\Layout;
 use Livewire\Component;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
-new class extends Component
+new #[Layout('layouts.app-admin')] class extends Component
 {
-     public $role;
+    public Role $role;
     public $name;
     public $selectedPermissions = [];
 
@@ -15,7 +17,7 @@ new class extends Component
     {
         $this->role = $role;
         $this->name = $role->name;
-        $this->selectedPermissions = $role->permissions->pluck('name')->toArray();
+        $this->selectedPermissions = $role->permissions->pluck('name')->toArray(); 
     }
 
     #[Computed()]
@@ -24,27 +26,41 @@ new class extends Component
         return Permission::select('id','name')->get();
     }
 
-    protected function rules()
+    public function rules()
     {
         return [
             'name' => 'required|string|min:3|unique:roles,name,' . $this->role->id,
-            'selectedPermissions' => 'array|min:1'
+            'selectedPermissions' => 'required|array|min:1',
+            'selectedPermissions.*' => 'exists:permissions,name',
         ];
     }
 
-    public function save()
+    public function messages()
+    {
+        return [
+            'name.required' => 'The role name is required.',
+            'name.unique' => 'The role name must be unique/already taken.',
+            'selectedPermissions.required' => 'Please select at least one permission.',
+        ];
+    }
+
+    public function update()
     {
         $this->validate();
 
-        // Update role name
+        // sanitize role name
+        $roleName = Str::of($this->name)->trim();
+
+        // 1. update role
         $this->role->update([
-            'name' => $this->name,
+            'name' => $roleName
         ]);
 
-        // Sync permissions
+        // 2. sync permissions
         $this->role->syncPermissions($this->selectedPermissions);
 
-        session()->flash('success', 'Role updated successfully!');
+        session()->flash('success', 'Role updated successfully.');
+        return redirect()->route('admin.role.view');
     }
 
 };

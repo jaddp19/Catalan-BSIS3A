@@ -3,15 +3,25 @@
         <div class="mt-12 max-w-full mx-auto">
             <!-- Card -->
             <div class="flex flex-col border border-gray-200 rounded-xl p-4 sm:p-6 lg:p-8 dark:border-neutral-700">
+
+                <!-- Back Button -->
+                <div class="mb-4">
+                    <a href="{{ route('admin.role.view') }}"
+                        class="inline-flex items-center gap-x-2 px-3 py-2 text-sm font-medium
+                            border border-gray-200 rounded-lg bg-white text-gray-700
+                            hover:bg-gray-50 hover:text-blue-600
+                            dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-200 dark:hover:bg-neutral-800">
+                        <svg class="w-4 h-4 flex-shrink-0 align-middle" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M15 15l-6-6 6-6" />
+                        </svg>
+                        <span>Back</span>
+                    </a>
+                </div>
+
                 <h2 class="mb-8 text-xl font-semibold text-gray-800 dark:text-neutral-200">
                     Create Role & Permission
                 </h2>
-
-                @if (session('success'))
-                <div class="mb-4 text-green-600 text-sm font-medium">
-                    {{ session('success') }}
-                </div>
-                @endif
 
                 <form wire:submit.prevent='save'>
                     <div class="grid gap-4 lg:gap-6">
@@ -50,7 +60,7 @@
                                     id="hs-checkbox-in-form-{{ $pKey }}" wire:model='selectedPermissions'
                                     value="{{ $permission->name }}">
                                 <span class="text-sm ms-3 text-muted-foreground-1 dark:text-amber-50">
-                                    {{ str_replace('_',' ', $permission->name) }}
+                                    {{ Str::title(str_replace('_', ' ', $permission->name)) }}
                                 </span>
 
                             </label>
