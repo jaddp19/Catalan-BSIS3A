@@ -2,16 +2,15 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Service extends Model
 {
-    #[Fillable(['service_name','description','price',])]
+    protected $fillable = ['service_name', 'image', 'description', 'price'];
 
     public function bookingDetails(): HasMany
 {
-    return $this->hasMany(BookingDetail::class, 'event_id');
+    return $this->hasMany(BookingDetail::class, 'service_id', 'id');
 }
 }

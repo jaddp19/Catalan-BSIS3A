@@ -2,11 +2,12 @@
 
 use Illuminate\Support\Str;
 use Livewire\Attributes\Computed;
+use Livewire\Attributes\Layout;
 use Livewire\Component;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
-new class extends Component
+new #[Layout('layouts.app-admin')] class extends Component
 {
     public $name;
     public $selectedPermissions = [];
@@ -55,17 +56,17 @@ new class extends Component
 
         //1. create role
         $role = Role::create([
-            'name' => $roleName //Wrong Spelling nyme
+            'name' => $roleName
         ]);
 
         //2. sync permissions
         $role->syncPermissions($this->selectedPermissions);
 
+        session()->flash('success', 'Role created successfully.');
+        $this->redirect(route('admin.role.view'));
 
         $this->reset([
             'name', 'selectedPermissions'
         ]);
-
-        session()->flash('success', 'Role and Permission created successfully!');
     }
 };

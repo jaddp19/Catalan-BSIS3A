@@ -1,124 +1,124 @@
-
 <div>
     <div class="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
         <div class="mt-12 max-w-full mx-auto">
+            <!-- Card -->
             <div class="flex flex-col border border-gray-200 rounded-xl p-4 sm:p-6 lg:p-8 dark:border-neutral-700">
+
+                <!-- Back Button -->
+                <div class="mb-4">
+                    <a href="{{ route('admin.user.view') }}"
+                        class="inline-flex items-center gap-x-2 px-3 py-2 text-sm font-medium
+                            border border-gray-200 rounded-lg bg-white text-gray-700
+                            hover:bg-gray-50 hover:text-blue-600
+                            dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-200 dark:hover:bg-neutral-800">
+                        <svg class="w-4 h-4 flex-shrink-0 align-middle" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M15 15l-6-6 6-6" />
+                        </svg>
+                        <span>Back</span>
+                    </a>
+                </div>
+
                 <h2 class="mb-8 text-xl font-semibold text-gray-800 dark:text-neutral-200">
                     Create User
                 </h2>
 
-                @if (session('success'))
-                <div class="mb-4 text-green-600 text-sm font-medium">
-                    {{ session('success') }}
-                </div>
-                @endif
-
-                <form wire:submit.prevent="save">
+                <form wire:submit.prevent="create">
                     <div class="grid gap-4 lg:gap-6">
-                        <!-- Name -->
-                        <div>
-                            <label class="block mb-2 text-sm text-gray-700 font-medium dark:text-white">Name</label>
-                            <input wire:model.defer="name" type="text"
-                                class="py-2.5 px-4 block w-full border-gray-200 rounded-lg sm:text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400">
-                            @error('name') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
-                        </div>
-
-                        <!-- Email -->
-                        <div>
-                            <label class="block mb-2 text-sm text-gray-700 font-medium dark:text-white">Email</label>
-                            <input wire:model.defer="email" type="email"
-                                class="py-2.5 px-4 block w-full border-gray-200 rounded-lg sm:text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400">
-                            @error('email') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
-                        </div>
-
-                        <!-- Password -->
-                        <div>
-                            <label class="block mb-2 text-sm text-gray-700 font-medium dark:text-white">Password</label>
-                            <div class="relative">
-                                <input wire:model.defer="password" type="password" id="password"
-                                    class="py-2.5 px-4 block w-full border-gray-200 rounded-lg sm:text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400">
-                                <button type="button" data-hs-toggle-password='{"target": "#password"}'
-                                    class="absolute inset-y-0 end-0 flex items-center px-3 cursor-pointer text-gray-400 rounded-e-md focus:outline-none focus:text-blue-600 dark:text-neutral-600 dark:focus:text-blue-500">
-                                    <svg class="shrink-0 size-3.5" width="24" height="24" viewBox="0 0 24 24"
-                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                        stroke-linejoin="round">
-                                        <path class="hs-password-active:hidden" d="M9.88 9.88a3 3 0 1 0 4.24 4.24">
-                                        </path>
-                                        <path class="hs-password-active:hidden"
-                                            d="M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68">
-                                        </path>
-                                        <path class="hs-password-active:hidden"
-                                            d="M6.61 6.61A13.526 13.526 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61">
-                                        </path>
-                                        <line class="hs-password-active:hidden" x1="2" x2="22" y1="2" y2="22"></line>
-                                        <path class="hidden hs-password-active:block"
-                                            d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path>
-                                        <circle class="hidden hs-password-active:block" cx="12" cy="12" r="3"></circle>
-                                    </svg>
-                                </button>
+                        <!-- Grid -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-6">
+                            <div>
+                                <label for="hs-name"
+                                    class="block mb-2 text-sm text-gray-700 font-medium dark:text-white">Name</label>
+                                <input wire:model.defer="name" type="text" id="hs-name"
+                                    class="py-2.5 sm:py-3 px-4 block w-full border-gray-200 rounded-lg sm:text-sm 
+                                    focus:border-blue-500 focus:ring-blue-500 dark:bg-neutral-900 dark:border-neutral-700 
+                                    dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600">
+                                @error('name') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
                             </div>
-                            @error('password') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
-                        </div>
 
-                        <!-- Confirm Password -->
-                        <div>
-                            <label class="block mb-2 text-sm text-gray-700 font-medium dark:text-white">Confirm
-                                Password</label>
-                            <div class="relative">
-                                <input wire:model.defer="password_confirmation" type="password"
-                                    id="password_confirmation"
-                                    class="py-2.5 px-4 block w-full border-gray-200 rounded-lg sm:text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400">
-                                <button type="button" data-hs-toggle-password='{"target": "#password_confirmation"}'
-                                    class="absolute inset-y-0 end-0 flex items-center px-3 cursor-pointer text-gray-400 rounded-e-md focus:outline-none focus:text-blue-600 dark:text-neutral-600 dark:focus:text-blue-500">
-                                    <svg class="shrink-0 size-3.5" width="24" height="24" viewBox="0 0 24 24"
-                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                        stroke-linejoin="round">
-                                        <path class="hs-password-active:hidden" d="M9.88 9.88a3 3 0 1 0 4.24 4.24">
-                                        </path>
-                                        <path class="hs-password-active:hidden"
-                                            d="M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68">
-                                        </path>
-                                        <path class="hs-password-active:hidden"
-                                            d="M6.61 6.61A13.526 13.526 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61">
-                                        </path>
-                                        <line class="hs-password-active:hidden" x1="2" x2="22" y1="2" y2="22"></line>
-                                        <path class="hidden hs-password-active:block"
-                                            d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path>
-                                        <circle class="hidden hs-password-active:block" cx="12" cy="12" r="3"></circle>
-                                    </svg>
-                                </button>
+                            <div>
+                                <label for="hs-email"
+                                    class="block mb-2 text-sm text-gray-700 font-medium dark:text-white">Email</label>
+                                <input wire:model.defer="email" type="email" id="hs-email"
+                                    class="py-2.5 sm:py-3 px-4 block w-full border-gray-200 rounded-lg sm:text-sm 
+                                    focus:border-blue-500 focus:ring-blue-500 dark:bg-neutral-900 dark:border-neutral-700 
+                                    dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600">
+                                @error('email') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
                             </div>
                         </div>
 
-                        <!-- Assign Roles -->
+                        <!-- Grid -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-6">
+                            <div>
+                                <label for="hs-phone"
+                                    class="block mb-2 text-sm text-gray-700 font-medium dark:text-white">Phone Number</label>
+                                <input wire:model.defer="phone_number" type="text" id="hs-phone"
+                                    class="py-2.5 sm:py-3 px-4 block w-full border-gray-200 rounded-lg sm:text-sm 
+                                    focus:border-blue-500 focus:ring-blue-500 dark:bg-neutral-900 dark:border-neutral-700 
+                                    dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
+                                    placeholder="e.g. 09123456789">
+                                @error('phone_number') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
+                            </div>
+
+                            <div>
+                                <label for="hs-password"
+                                    class="block mb-2 text-sm text-gray-700 font-medium dark:text-white">Password</label>
+                                <input wire:model.defer="password" type="password" id="hs-password"
+                                    class="py-2.5 sm:py-3 px-4 block w-full border-gray-200 rounded-lg sm:text-sm 
+                                    focus:border-blue-500 focus:ring-blue-500 dark:bg-neutral-900 dark:border-neutral-700 
+                                    dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600">
+                                @error('password') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
+                            </div>
+
+                            <div>
+                                <label for="hs-password-confirmation"
+                                    class="block mb-2 text-sm text-gray-700 font-medium dark:text-white">Confirm Password</label>
+                                <input wire:model.defer="password_confirmation" type="password" id="hs-password-confirmation"
+                                    class="py-2.5 sm:py-3 px-4 block w-full border-gray-200 rounded-lg sm:text-sm 
+                                    focus:border-blue-500 focus:ring-blue-500 dark:bg-neutral-900 dark:border-neutral-700 
+                                    dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600">
+                                @error('password_confirmation') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
+                            </div>
+                        </div>
+
                         <div class="mt-5">
                             <h2 class="mb-1 text-lg font-semibold text-gray-800 dark:text-neutral-200">
-                                Assign Roles
+                                Assign Role
                             </h2>
-                            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-2">
-                                @foreach($roles as $role)
-                                <label
-                                    class="flex items-center p-3 w-full border rounded-lg text-sm dark:border-neutral-700">
-                                    <input type="checkbox" wire:model="selectedRoles" value="{{ $role->name }}"
-                                        class="shrink-0 size-4 border-gray-300 rounded-sm text-blue-600 focus:ring-blue-500">
-                                    <span class="ms-3 text-sm text-gray-700 dark:text-neutral-200">{{ $role->name
-                                        }}</span>
+                        </div>
+                        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-2">
+                            @foreach($this->roles as $role)
+                                <label class="flex items-center p-3 w-full border dark:border-neutral-700 rounded-lg text-sm">
+                                    <input type="checkbox" 
+                                        value="{{ $role->name }}"
+                                        x-data
+                                        x-init="$watch('$wire.selectedRole', value => {
+                                            $el.checked = value === '{{ $role->name }}';
+                                        })"
+                                        @click="$wire.set('selectedRole', '{{ $role->name }}')"
+                                        class="shrink-0 size-4 rounded-sm text-primary">
+                                    <span class="ms-3 text-muted-foreground-1 dark:text-amber-50">
+                                        {{ Str::ucfirst($role->name) }}
+                                    </span>
                                 </label>
-                                @endforeach
-                            </div>
+                            @endforeach
+                            @error('selectedRole') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
                         </div>
                     </div>
+                    <!-- End Grid -->
 
-                    <!-- Save Button -->
                     <div class="mt-6 grid">
                         <button type="submit"
-                            class="w-50 py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-lg bg-blue-600 text-white hover:bg-blue-700 focus:outline-hidden">
+                            class="w-50 py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium 
+                            rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 
+                            focus:outline-hidden focus:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none">
                             Save
                         </button>
                     </div>
                 </form>
             </div>
+            <!-- End Card -->
         </div>
     </div>
-    {{-- Simplicity is the essence of happiness. - Cedric Bledsoe --}}
 </div>

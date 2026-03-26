@@ -1,53 +1,91 @@
 <div>
     <div class="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
         <div class="mt-12 max-w-full mx-auto">
+            <!-- Card -->
             <div class="flex flex-col border border-gray-200 rounded-xl p-4 sm:p-6 lg:p-8 dark:border-neutral-700">
+
+                <!-- Back Button -->
+                <div class="mb-4">
+                    <a href="{{ route('admin.role.view') }}"
+                        class="inline-flex items-center gap-x-2 px-3 py-2 text-sm font-medium
+                            border border-gray-200 rounded-lg bg-white text-gray-700
+                            hover:bg-gray-50 hover:text-blue-600
+                            dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-200 dark:hover:bg-neutral-800">
+                        <svg class="w-4 h-4 flex-shrink-0 align-middle" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M15 15l-6-6 6-6" />
+                        </svg>
+                        <span>Back</span>
+                    </a>
+                </div>
+
                 <h2 class="mb-8 text-xl font-semibold text-gray-800 dark:text-neutral-200">
-                    Edit Role & Permission
+                    Update Role & Permission
                 </h2>
 
-                <form wire:submit.prevent="save">
+                <form wire:submit.prevent='update'>
                     <div class="grid gap-4 lg:gap-6">
-                        <!-- Role Name -->
-                        <div>
-                            <label for="hs-name" class="block mb-2 text-sm font-medium dark:text-white">Role Name</label>
-                            <input wire:model.defer="name" type="text" id="hs-name"
-                                class="py-2.5 px-4 block w-full border-gray-200 rounded-lg sm:text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400">
-                            @error('name') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
-                        </div>
+                        <!-- Grid -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-6">
+                            <div>
+                                <label for="hs-name"
+                                    class="block mb-2 text-sm text-gray-700 font-medium dark:text-white">Role
+                                    Name</label>
+                                <input wire:model.defer='name' type="text" name="hs-name" id="hs-name"
+                                    class="py-2.5 sm:py-3 px-4 block w-full border-gray-200 rounded-lg sm:text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600">
 
-                        <!-- Permissions -->
+              
+                            </div>
+                        </div>
                         <div class="mt-5">
                             <h2 class="mb-1 text-lg font-semibold text-gray-800 dark:text-neutral-200">
                                 Assign Permissions
                             </h2>
-                            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-2">
-                                @foreach ($this->permissions as $key => $permission)
-                                    <label wire:key="{{ $key }}" for="perm-{{ $key }}"
-                                        class="flex items-center p-3 w-full border rounded-lg text-sm dark:border-neutral-700">
-                                        <input type="checkbox" id="perm-{{ $key }}"
-                                            wire:model="selectedPermissions" value="{{ $permission->name }}"
-                                            class="shrink-0 size-4 border-gray-300 rounded-sm text-blue-600 focus:ring-blue-500">
-                                        <span class="ms-3 text-sm text-gray-700 dark:text-neutral-200">
-                                            {{ str_replace('_', ' ', Str::title($permission->name)) }}
-                                        </span>
-                                    </label>
-                                @endforeach
-                            </div>
-                            @error('selectedPermissions') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
+
+                             @error('selectedPermissions')
+                                <div>
+                                    <span class="mt-2 text-sm text-red-600 dark:text-red-500">{{ $message }}</span>
+                                </div>
+                            @enderror
+
                         </div>
+                        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-2">
+
+                            @forelse ($this->permissions as $pKey => $permission)
+
+                            <label wire:key='{{ $pKey }}' for="hs-checkbox-in-form-{{ $pKey }}"
+                                class="flex items-center p-3 w-full bg-layer border dark:border-neutral-700 border-layer-line rounded-lg text-sm focus:border-primary-focus focus:ring-primary-focus">
+                                <input type="checkbox"
+                                    class="shrink-0 size-4 bg-transparent border-line-3 rounded-sm shadow-2xs text-primary focus:ring-0 focus:ring-offset-0 checked:bg-primary-checked checked:border-primary-checked disabled:opacity-50 disabled:pointer-events-none"
+                                    id="hs-checkbox-in-form-{{ $pKey }}" wire:model='selectedPermissions'
+                                    value="{{ $permission->name }}">
+                                <span class="text-sm ms-3 text-muted-foreground-1 dark:text-amber-50">
+                                    {{ Str::title(str_replace('_', ' ', $permission->name)) }}
+                                </span>
+
+                            </label>
+
+                            @empty
+                            <p>No Permissions Found</p>
+                            @endforelse
+
+
+
+
+                        </div>
+
+                    </div>
+                    <!-- End Grid -->
+
+                    <div class="mt-6 grid">
+                        <button type="submit"
+                            class="w-50 py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 focus:outline-hidden focus:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none">Save</button>
                     </div>
 
-                    <!-- Save Button -->
-                    <div class="mt-6">
-                        <button type="submit" class="px-6 py-3 bg-blue-600 text-white rounded-lg">Save</button>
-                    </div>
-
-                    @if(session()->has('success'))
-                        <div class="mt-4 text-green-600">{{ session('success') }}</div>
-                    @endif
                 </form>
             </div>
+            <!-- End Card -->
         </div>
     </div>
+    <!-- End Contact Us -->
 </div>
