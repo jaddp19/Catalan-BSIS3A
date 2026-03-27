@@ -1,7 +1,6 @@
 @import 'tailwindcss';
 
 
-/* Preline UI */
 @import "../../node_modules/preline/variants.css";
 @source "../../node_modules/preline/dist/*.js";
 
@@ -30,6 +29,14 @@
 @custom-variant hover (&:hover);
 
 @custom-variant dark (&:where(.dark, .dark *));
+
+html{
+  scroll-behavior: smooth;
+}
+
+#btn-explore, #btn-view, #title, button, #customize{
+  background: #6E9104;
+}
 
 #header-link:hover, #btn-learnmore:hover{
   background:#6E9104;

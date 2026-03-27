@@ -16,13 +16,14 @@ class AdminMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (!Auth::check()) {
+        if (!Auth::guard('web')->check()) {
             return redirect()->route('login');
         }
 
         if (!Auth::user()->hasRole('admin')) {
             abort(403, 'Unauthorized');
         }
+
         return $next($request);
     }
 }

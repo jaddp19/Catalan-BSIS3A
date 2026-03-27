@@ -112,7 +112,6 @@ new class extends Component {};
 
         
  <div class="flex flex-col overflow-hidden transition bg-white shadow-sm hover:shadow-md">
-  <!-- Image with overlay title -->
   <div class="relative w-full">
     <img class="object-cover w-full h-64 sm:h-72 md:h-80 lg:h-96"
       src="https://i.pinimg.com/736x/b4/19/ee/b419eee03532953fb7eb8200e8481d30.jpg"

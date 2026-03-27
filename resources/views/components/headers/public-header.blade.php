@@ -1,6 +1,6 @@
 <div>
   <header class="z-50 flex flex-wrap w-full bg-neutral-800 md:justify-start md:flex-nowrap">
-    <nav class="relative max-w-[95rem] w-full mx-auto flex items-center justify-between py-6 px-4 sm:px-6">
+    <nav class="relative max-w-[95rem] w-full mx-auto flex flex-row items-center justify-between py-6 px-4 sm:px-6">
       <div class="flex items-center gap-x-1">
         <!-- Logo SVG -->
         <svg width="211" height="34" viewBox="0 0 211 34" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -42,17 +42,17 @@
           <div class="flex flex-col gap-0.5 py-2 lg:py-0 lg:flex-row lg:items-center lg:gap-1">
             <div class="grow">
               <div class="flex flex-col space-x-5 gap-0.5 lg:flex-row lg:items-center lg:gap-1">
-                <a href="/" wire:navigate class="flex items-center p-2 text-lg text-gray-200 transition rounded-lg dark:text-neutral-200 hover:bg-lime-100">Home</a>
-                <a href="/about" wire:navigate class="flex items-center p-2 text-lg text-gray-200 transition rounded-lg dark:text-neutral-200 hover:bg-lime-100">About</a>
-                <a href="/contact" wire:navigate class="flex items-center p-2 text-lg text-gray-200 transition rounded-lg dark:text-neutral-200 hover:bg-lime-100">Contact</a>
-                <a href="/menulist" wire:navigate class="flex items-center p-2 text-lg text-gray-200 transition rounded-lg dark:text-neutral-200 hover:bg-lime-100">Menus</a>
+                <a href="/" wire:navigate  id="header-link" class="flex items-center p-2 text-lg text-gray-200 transition rounded-lg dark:text-neutral-200 hover:bg-lime-100">Home</a>
+                <a href="/about" wire:navigate id="header-link" class="flex items-center p-2 text-lg text-gray-200 transition rounded-lg dark:text-neutral-200 hover:bg-lime-100">About</a>
+                <a href="/contact" wire:navigate id="header-link" class="flex items-center p-2 text-lg text-gray-200 transition rounded-lg dark:text-neutral-200 hover:bg-lime-100">Contact</a>
+                <a href="/menulist" wire:navigate id="header-link" class="flex items-center p-2 text-lg text-gray-200 transition rounded-lg dark:text-neutral-200 hover:bg-lime-100">Menus</a>
               </div>
             </div>
 
             <div class="lg:ms-auto mt-2 lg:mt-0 flex flex-wrap items-center gap-x-1.5">
-              <a href="/login" wire:navigate class="py-[7px] px-2.5 inline-flex items-center transition font-medium text-sm rounded-lg text-gray-700 dark:text-white shadow-2xs hover:bg-lime-600">Log in</a>
-              <span class="dark:text-white">/</span>
-              <a href="/register" wire:navigate class="py-[7px] px-2.5 inline-flex items-center transition font-medium text-sm rounded-lg text-gray-700 dark:text-white shadow-2xs hover:bg-lime-600">Sign up</a>
+              <a href="/login" wire:navigate id="header-link" class="py-[7px] px-2.5 inline-flex items-center transition font-medium text-sm rounded-lg text-white dark:text-neutral-50 shadow-2xs hover:bg-lime-600">Log in</a>
+              <span class="text-white dark:text-white">/</span>
+              <a href="/register" wire:navigate id="header-link" class="py-[7px] px-2.5 inline-flex items-center transition font-medium text-sm rounded-lg  text-white dark:text-neutral-50 shadow-2xs hover:bg-lime-600">Sign up</a>
             </div>
           </div>
         </div>

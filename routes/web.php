@@ -7,13 +7,15 @@ use App\Http\Controllers\Admin\DashboardController;
 Route::livewire('/', 'public::pages.index')->name('home');
 Route::livewire('/learnmore', 'public::pages.learnmore')->name('learnmore');
 Route::livewire('/about', 'public::pages.about')->name('about');
+Route::livewire('/contact', 'public::pages.contact')->name('contact');
 Route::livewire('/menulist', 'public::pages.menu-list')->name('menulist');
 Route::livewire('/reservation', 'public::pages.reservation')->name('reservation');
+Route::livewire('/customize', 'public::pages.customize')->name('customize');
 
 Route::livewire('/login', 'public::pages.auth.login')->name('login');
 Route::livewire('/register', 'public::pages.auth.register')->name('register');
 
-Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
+ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
     Route::livewire('/dashboard', 'admin::pages.dashboard-page')->name('admin.dashboard');
 
     //users
