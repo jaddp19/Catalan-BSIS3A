@@ -1,6 +1,9 @@
 <?php
 
 use Livewire\Component;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
+
 
 new class extends Component {
     public $email;
