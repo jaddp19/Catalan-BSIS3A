@@ -15,7 +15,7 @@ Route::livewire('/customize', 'public::pages.customize')->name('customize');
 Route::livewire('/login', 'public::pages.auth.login')->name('login');
 Route::livewire('/register', 'public::pages.auth.register')->name('register');
 
- Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
+ Route::prefix('admin')->group(function () {
     Route::livewire('/dashboard', 'admin::pages.dashboard-page')->name('admin.dashboard');
 
     //users
@@ -28,10 +28,10 @@ Route::livewire('/register', 'public::pages.auth.register')->name('register');
     Route::livewire('/roles/create', 'admin::pages.role.create-role')->name('admin.role.create');
     Route::livewire('/roles/edit/{role}', 'admin::pages.role.edit-role')->name('admin.role.edit');
 
-    //services
-    Route::livewire('/services', 'admin::pages.service.view-service')->name('admin.service.view');
-    Route::livewire('/services/create', 'admin::pages.service.create-service')->name('admin.service.create');
-    Route::livewire('/services/edit/{service}', 'admin::pages.service.edit-service')->name('admin.service.edit');
+    //menus
+    Route::livewire('/menus', 'admin::pages.menu.view-menu')->name('admin.menu.view');
+    Route::livewire('/menus/create', 'admin::pages.menu.create-menu')->name('admin.menu.create');
+    Route::livewire('/menus/edit/{menu}', 'admin::pages.menu.edit-menu')->name('admin.menu.edit');
 });
 
 Broadcast::routes();
