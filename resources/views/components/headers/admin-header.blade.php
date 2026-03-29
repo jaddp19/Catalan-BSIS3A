@@ -69,10 +69,10 @@
                                 role="menu" aria-orientation="vertical" aria-labelledby="hs-dnad">
                                 <div class="py-2 px-3.5">
                                     <span class="font-medium text-gray-800 dark:text-neutral-300">
-                                        {{ Auth::user()->name }}
+                                        {{-- {{ Auth::user()->name }} --}}
                                     </span>
                                     <p class="text-sm text-gray-500 dark:text-neutral-500">
-                                        {{ Auth::user()->email }}
+                                        {{-- {{ Auth::user()->email }} --}}
                                     </p>
                                     <div class="mt-1.5">
 

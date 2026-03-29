@@ -13,12 +13,13 @@ return new class extends Migration
     {
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('booking_id')->constrained('bookings')->cascadeOnDelete();
-            $table->decimal('amount');
-            $table->date('paymemt_date');
-             $table->enum('payment_status', ['Partial', 'Paid', 'Refunded']);
+            $table->foreignId('booking_detail_id')->constrained('booking_details')->cascadeOnDelete();
+            $table->decimal('amount', 10, 2); // total paid
+            $table->date('payment_date');
+            $table->enum('payment_status', ['Partial', 'Paid', 'Refunded', 'COD'])->default('COD');
             $table->timestamps();
         });
+
     }
 
     /**

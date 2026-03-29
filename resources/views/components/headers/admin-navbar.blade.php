@@ -52,17 +52,6 @@
                     <input type="text"
                         placeholder="Search"
                         class="flex-1 bg-transparent border-none focus:ring-0 text-sm text-gray-700 dark:text-neutral-200" />
-
-                    {{-- Icon + shortcut badge (optional, commented out) --}}
-                    {{-- <span
-                        class="ms-auto flex items-center gap-x-1 py-px px-1.5 border border-gray-200 rounded-md dark:border-neutral-700">
-                        <svg class="shrink-0 size-2.5" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                            stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M15 6v12a3 3 0 1 0 3-3H6a3 3 0 1 0 3 3V6a3 3 0 1 0-3 3h12a3 3 0 1 0-3-3"></path>
-                        </svg>
-                        <span class="text-[11px] uppercase">k</span>
-                    </span> --}}
                 </button>
 
 
@@ -96,7 +85,7 @@
                         <li>
                             <a class="w-full flex items-center gap-x-2 py-2 px-2.5 text-sm text-gray-800 rounded-lg hover:bg-gray-200 focus:outline-hidden focus:bg-gray-200 dark:hover:bg-neutral-800 dark:focus:bg-neutral-800 dark:text-neutral-200 "
                                 href="#">
-                                Posts
+                                Pending Books
                             </a>
                         </li>
                         <li>
@@ -112,7 +101,7 @@
                 <div
                     class="pt-3 mt-3 flex flex-col border-t border-gray-200 first:border-t-0 first:pt-0 first:mt-0 dark:border-neutral-700">
                     <span class="block ps-2.5 mb-2 font-medium text-xs uppercase text-gray-500 dark:text-neutral-500">
-                        Services
+                        Menus
                     </span>
 
                     <!-- List -->
@@ -120,20 +109,8 @@
                         <li>
                             <a class="w-full flex items-center gap-x-2 py-2 px-2.5 text-sm text-gray-800 rounded-lg dark:hover:bg-neutral-800 dark:focus:bg-neutral-800 hover:bg-gray-200 focus:outline-hidden focus:bg-gray-200 dark:text-neutral-200 "
                                 wire:current="dark:bg-neutral-800 dark:focus:bg-neutral-800 bg-neutral-800"
-                                href="{{ route('admin.service.view') }}">
-                                Services
-                            </a>
-                        </li>
-                        <li>
-                            <a class="w-full flex items-center gap-x-2 py-2 px-2.5 text-sm text-gray-800 rounded-lg hover:bg-gray-200 focus:outline-hidden focus:bg-gray-200 dark:hover:bg-neutral-800 dark:focus:bg-neutral-800 dark:text-neutral-200 "
-                                href="#">
-                                Draft
-                            </a>
-                        </li>
-                        <li>
-                            <a class="w-full flex items-center gap-x-2 py-2 px-2.5 text-sm text-gray-800 rounded-lg hover:bg-gray-200 focus:outline-hidden focus:bg-gray-200 dark:hover:bg-neutral-800 dark:focus:bg-neutral-800 dark:text-neutral-200 "
-                                href="#">
-                                Published
+                                href="{{ route('admin.menu.view') }}">
+                                Foods   
                             </a>
                         </li>
                     </ul>
