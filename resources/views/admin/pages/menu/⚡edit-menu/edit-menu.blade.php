@@ -81,11 +81,14 @@
                                 <span class="mt-2 text-sm text-red-600 dark:text-red-500">{{ $message }}</span>
                             @enderror
 
-                            @if ($image)
-                                <div class="mt-2">
-                                    <img src="{{ $image->temporaryUrl() }}" class="w-32 h-32 object-cover rounded-lg">
-                                </div>
-                            @endif
+                           <div>
+                                @if($image instanceof \Livewire\Features\SupportFileUploads\TemporaryUploadedFile)
+                                    <img src="{{ $image->temporaryUrl() }}" alt="Preview" class="w-32 h-32 object-cover rounded">
+                                @elseif(is_string($image) && $image)
+                                    <img src="{{ asset('storage/' . $image) }}" alt="Menu Image" class="w-32 h-32 object-cover rounded">
+                                @endif
+                            </div>
+
                         </div>
 
 

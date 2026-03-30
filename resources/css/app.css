@@ -50,3 +50,9 @@ html{
 #btn-cancel:hover{
   background-color: rgb(255, 68, 68);
 }
+#btn-pending{
+  background-color: rgba(245, 228, 0, 0.856);
+}
+#btn-pending:hover{
+  background-color: rgb(255, 255, 102);
+}

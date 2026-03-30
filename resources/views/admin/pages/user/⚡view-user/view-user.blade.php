@@ -12,6 +12,7 @@
                             <div>
                                 <h2 class="text-xl font-semibold text-gray-800 dark:text-neutral-200">Users</h2>
                                 <p class="text-sm text-gray-600 dark:text-neutral-400">Manage and view all users</p>
+                                @can('deleteAny', App\Models\User::class)
                                 <!-- Only shows if the checkbox in thead or td is clicked -->
                                 @if(!empty($selectedUsers))
                                     <div class="py-2">
@@ -22,11 +23,13 @@
                                                     $wire.deleteSelected()
                                                 }
                                             "
+                                            id="btn-cancel"
                                             class="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700">
                                             Delete Selected ({{ count($selectedUsers) }})
                                         </button>
                                     </div>
                                 @endif
+                                @endcan
                             </div>
                             <div>
                                 <div class="inline-flex gap-x-2">
@@ -34,6 +37,7 @@
                                        href="{{ route('admin.user.view') }}">
                                         View all
                                     </a>
+                                    @can('create', App\Models\User::class)
                                     <a class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 focus:outline-hidden focus:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none"
                                         href="{{ route('admin.user.create') }}">
                                         <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24"
@@ -44,6 +48,7 @@
                                         </svg>
                                         Add User
                                     </a>
+                                    @endcan
                                 </div>
                             </div>
                         </div>
@@ -80,9 +85,7 @@
                                             <input type="checkbox"
                                                 wire:click="toggleRowSelection({{ $user->id }})"
                                                 x-data
-                                                x-init="$watch('$wire.selectedUsers', value => {
-                                                    $el.checked = value.includes({{ $user->id }});
-                                                })"
+                                                x-bind:checked="@js($selectedUsers).includes({{ $user->id }})"
                                                 class="border-gray-300 rounded-sm text-blue-600 align-middle">
                                         </td>
                                         <td class="px-6 py-3">
@@ -105,6 +108,7 @@
                                                 {{ $user->created_at->diffForHumans() }}
                                             </span>
                                         </td>
+                                        @can('update', $user)
                                         <td class="px-6 py-1.5">
                                             <div class="flex items-center justify-start gap-6">
                                                 <a href="{{ route('admin.user.edit', $user->id) }}"
@@ -113,6 +117,7 @@
                                                 </a>
                                             </div>
                                         </td>
+                                        @endcan
                                     </tr>
                                 @empty
                                     <tr>

@@ -75,7 +75,7 @@ new #[Layout('layouts.app-admin')] class extends Component
     #[Computed]
     public function menus()
     {
-        return Menu::select('id','menu_name','type_of_menu','price','created_at')
+        return Menu::select('id', 'image', 'menu_name','type_of_menu','price','created_at')
             ->latest()
             ->paginate(5);
     }

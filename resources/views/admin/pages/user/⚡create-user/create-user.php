@@ -54,7 +54,7 @@ new #[Layout('layouts.app-admin')] class extends Component
             'name' => $validated['name'],
             'email' => $validated['email'],
             'password' => Hash::make($validated['password']),
-            'phoe_number' => $validated['phone_number'],
+            'phone_number' => $validated['phone_number'],
         ]);
 
         $user->syncRoles($validated['selectedRole']);

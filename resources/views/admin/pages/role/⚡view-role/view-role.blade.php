@@ -28,6 +28,7 @@
                                                     $wire.deleteSelected()
                                                 }
                                             "
+                                            id="btn-cancel"
                                             class="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700">
                                             Delete Selected ({{ count($selectedRoles) }})
                                         </button>
@@ -94,9 +95,7 @@
                                             <input type="checkbox"
                                                 wire:click="toggleRowSelection({{ $role->id }})"
                                                 x-data
-                                                x-init="$watch('$wire.selectedRoles', value => {
-                                                    $el.checked = value.includes({{ $role->id }});
-                                                })"
+                                                x-bind:checked="@js($selectedRoles).includes({{ $role->id }})"
                                                 class="border-gray-300 rounded-sm text-blue-600 align-middle">
                                         </td>
                                         <td class="px-2 sm:px-6 py-3">
@@ -114,7 +113,7 @@
                                                 {{ $role->created_at->diffForHumans() }}
                                             </span>
                                         </td>
-                                        <td class="px-2 sm:px-6 py-1.5 text-end">
+                                        <td class="px-2 sm:px-6 py-1.5 text-start">
                                             <a href="{{ route('admin.role.edit', $role->id) }}"
                                             class="text-blue-600 hover:underline dark:text-blue-500">
                                                 Edit

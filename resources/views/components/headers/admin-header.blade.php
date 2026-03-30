@@ -1,4 +1,4 @@
-<div class="bg-white dark:bg-black">
+<div>
 <!-- ========== HEADER ========== -->
 <header
     class="fixed top-0 inset-x-0 flex flex-wrap md:justify-start md:flex-nowrap z-48 lg:z-61 w-full bg-zinc-100 text-sm py-2.5 dark:bg-neutral-900">
@@ -69,14 +69,11 @@
                                 role="menu" aria-orientation="vertical" aria-labelledby="hs-dnad">
                                 <div class="py-2 px-3.5">
                                     <span class="font-medium text-gray-800 dark:text-neutral-300">
-                                        {{-- {{ Auth::user()->name }} --}}
+                                        {{ Auth::user()->name }}
                                     </span>
                                     <p class="text-sm text-gray-500 dark:text-neutral-500">
-                                        {{-- {{ Auth::user()->email }} --}}
+                                        {{ Auth::user()->email }}
                                     </p>
-                                    <div class="mt-1.5">
-
-                                    </div>
                                 </div>
                                 <div class="px-4 py-2 border-t border-gray-200 dark:border-neutral-800">
                                     <!-- Switch/Toggle -->
@@ -144,17 +141,20 @@
                                         Profile
                                     </a>
 
-                                    <a class="flex items-center gap-x-3 py-2 px-3 rounded-lg text-sm text-gray-600 hover:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none focus:outline-hidden focus:bg-gray-100 dark:text-neutral-400 dark:hover:bg-neutral-800 dark:focus:bg-neutral-800"
-                                        href="{{ route('login') }}">
-                                        <svg class="shrink-0 mt-0.5 size-4" xmlns="http://www.w3.org/2000/svg"
-                                            width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                            <path d="m16 17 5-5-5-5" />
-                                            <path d="M21 12H9" />
-                                            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
-                                        </svg>
-                                        Log out
-                                    </a>
+                                    <form method="POST" action="{{ route('logout') }}">
+                                        @csrf
+                                        <button type="submit"
+                                            class="flex items-center gap-x-3 py-2 px-3 rounded-lg text-sm text-gray-600 hover:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none focus:outline-hidden focus:bg-gray-100 dark:text-neutral-400 dark:hover:bg-neutral-800 dark:focus:bg-neutral-800">
+                                            <svg class="shrink-0 mt-0.5 size-4" xmlns="http://www.w3.org/2000/svg"
+                                                width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                <path d="m16 17 5-5-5-5" />
+                                                <path d="M21 12H9" />
+                                                <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+                                            </svg>
+                                            Log out
+                                        </button>
+                                    </form>
                                 </div>
                             </div>
                             <!-- End Account Dropdown -->

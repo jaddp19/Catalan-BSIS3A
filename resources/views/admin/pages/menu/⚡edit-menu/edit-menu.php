@@ -22,6 +22,7 @@ new #[Layout('layouts.app-admin')] class extends Component
         $this->menu = $menu;
         $this->menu_name    = $menu->menu_name;
         $this->type_of_menu = $menu->type_of_menu;
+        $this->image        = $menu->image;
         $this->description  = $menu->description ?? '';
         $this->price        = $menu->price;
     }

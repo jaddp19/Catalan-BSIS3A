@@ -77,21 +77,33 @@
                 <div
                     class="pt-3 mt-3 flex flex-col border-t border-gray-200 first:border-t-0 first:pt-0 first:mt-0 dark:border-neutral-700">
                     <span class="block ps-2.5 mb-2 font-medium text-xs uppercase text-gray-500 dark:text-neutral-500">
-                        Books
+                        Bookings
                     </span>
 
                     <!-- List -->
                     <ul class="flex flex-col gap-y-1">
                         <li>
                             <a class="w-full flex items-center gap-x-2 py-2 px-2.5 text-sm text-gray-800 rounded-lg hover:bg-gray-200 focus:outline-hidden focus:bg-gray-200 dark:hover:bg-neutral-800 dark:focus:bg-neutral-800 dark:text-neutral-200 "
-                                href="#">
+                                href="{{ route('admin.booking.view') }}">
+                                View Bookings
+                            </a>
+                        </li>
+                        <li>
+                            <a class="w-full flex items-center gap-x-2 py-2 px-2.5 text-sm text-gray-800 rounded-lg hover:bg-gray-200 focus:outline-hidden focus:bg-gray-200 dark:hover:bg-neutral-800 dark:focus:bg-neutral-800 dark:text-neutral-200 "
+                                href="{{ route('admin.booking.pending') }}">
                                 Pending Books
                             </a>
                         </li>
                         <li>
                             <a class="w-full flex items-center gap-x-2 py-2 px-2.5 text-sm text-gray-800 rounded-lg hover:bg-gray-200 focus:outline-hidden focus:bg-gray-200 dark:hover:bg-neutral-800 dark:focus:bg-neutral-800 dark:text-neutral-200 "
-                                href="#">
-                                Members
+                                href="{{ route('admin.booking.confirmed') }}">
+                                Approved Books
+                            </a>
+                        </li>
+                        <li>
+                            <a class="w-full flex items-center gap-x-2 py-2 px-2.5 text-sm text-gray-800 rounded-lg hover:bg-gray-200 focus:outline-hidden focus:bg-gray-200 dark:hover:bg-neutral-800 dark:focus:bg-neutral-800 dark:text-neutral-200 "
+                                href="{{ route('admin.booking.cancelled') }}">
+                                Cancelled Books
                             </a>
                         </li>
                     </ul>
@@ -140,8 +152,6 @@
                                 Roles
                             </a>
                         </li>
-
-
                     </ul>
                     <!-- End List -->
                 </div>

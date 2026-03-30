@@ -14,7 +14,7 @@
                             <p class="text-sm text-gray-600 dark:text-neutral-400">
                                 Manage menu items
                             </p>
-
+                            @can('deleteAny', App\Models\Menu::class)
                             <!-- Delete Selected -->
                             @if(!empty($selectedMenus))
                                 <div class="py-2">
@@ -25,15 +25,18 @@
                                                 $wire.deleteSelected()
                                             }
                                         "
+                                        id="btn-cancel"
                                         class="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700">
                                         Delete Selected ({{ count($selectedMenus) }})
                                     </button>
                                 </div>
                             @endif
+                            @endcan
                         </div>
 
                         <div>
                             <div class="inline-flex gap-x-2">
+                                @can('create', \App\Models\Menu::class)
                                 <a href="{{ route('admin.menu.create') }}"
                                    class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700">
                                     <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24"
@@ -44,6 +47,7 @@
                                     </svg>
                                     Add Menu
                                 </a>
+                                @endcan
                             </div>
                         </div>
                     </div>
@@ -75,7 +79,7 @@
                                 <th class="px-2 sm:px-6 py-3 text-start font-semibold uppercase text-gray-800 dark:text-neutral-200">
                                     Price
                                 </th>
-                                <th class="hidden md:table-cell px-2 sm:px-6 py-3 text-start font-semibold uppercase text-gray-800 dark:text-neutral-200">
+                                <th class="hidden md:table-cell px-2 sm:px-6 py-3 text-center font-semibold uppercase text-gray-800 dark:text-neutral-200">
                                     Image
                                 </th>
                                 <th class="px-2 sm:px-6 py-3 text-end"></th>
@@ -88,10 +92,9 @@
                                     <td class="w-4 ps-2 sm:ps-6 py-3 text-center align-middle">
                                         <input type="checkbox"
                                             wire:click="toggleRowSelection({{ $menu->id }})"
+                                            wire:click="toggleRowSelection({{ $menu->id }})"
                                             x-data
-                                            x-init="$watch('$wire.selectedMenus', value => {
-                                                $el.checked = value.includes({{ $menu->id }});
-                                            })"
+                                            x-bind:checked="@js($selectedMenus).includes({{ $menu->id }})"
                                             class="border-gray-300 rounded-sm text-blue-600 align-middle">
                                     </td>
                                     <td class="px-2 sm:px-6 py-3">
@@ -109,22 +112,24 @@
                                             ₱{{ number_format($menu->price, 2) }}
                                         </span>
                                     </td>
-                                    <td class="px-2 sm:px-6 py-3 text-left">
+                                    <td class="px-2 sm:px-6 py-3 text-center">
                                         @if($menu->image)
                                             <img src="{{ asset('storage/' . $menu->image) }}" 
                                                 alt="{{ $menu->menu_name }}" 
-                                                class="w-16 h-16 object-cover rounded-lg mx-auto border border-gray-300 dark:border-neutral-600">
+                                                class="w-16 h-16 object-cover rounded-lg border border-gray-300 dark:border-neutral-600 mx-auto">
                                         @else
                                             <span class="text-gray-400 text-sm">No image</span>
                                         @endif
                                     </td>
 
-                                    <td class="px-2 sm:px-6 py-1.5 text-end">
+                                    @can('update', $menu)
+                                    <td class="px-2 sm:px-6 py-1.5 text-center">
                                         <a href="{{ route('admin.menu.edit', $menu->id) }}"
                                            class="text-blue-600 hover:underline dark:text-blue-500">
                                             Edit
                                         </a>
                                     </td>
+                                    @endcan
                                 </tr>
                             @empty
                                 <tr>

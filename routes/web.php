@@ -1,21 +1,29 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Broadcast;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Admin\DashboardController;
+
 
 Route::livewire('/', 'public::pages.index')->name('home');
 Route::livewire('/learnmore', 'public::pages.learnmore')->name('learnmore');
 Route::livewire('/about', 'public::pages.about')->name('about');
 Route::livewire('/contact', 'public::pages.contact')->name('contact');
 Route::livewire('/menulist', 'public::pages.menu-list')->name('menulist');
-Route::livewire('/reservation', 'public::pages.reservation')->name('reservation');
 Route::livewire('/customize', 'public::pages.customize')->name('customize');
 
 Route::livewire('/login', 'public::pages.auth.login')->name('login');
 Route::livewire('/register', 'public::pages.auth.register')->name('register');
 
- Route::prefix('admin')->group(function () {
+Route::post('/logout', function () {
+    Auth::logout();
+    request()->session()->invalidate();
+    request()->session()->regenerateToken();
+    return redirect()->route('home'); // send them back to homepage
+})->name('logout');
+
+Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
+
     Route::livewire('/dashboard', 'admin::pages.dashboard-page')->name('admin.dashboard');
 
     //users
@@ -32,6 +40,13 @@ Route::livewire('/register', 'public::pages.auth.register')->name('register');
     Route::livewire('/menus', 'admin::pages.menu.view-menu')->name('admin.menu.view');
     Route::livewire('/menus/create', 'admin::pages.menu.create-menu')->name('admin.menu.create');
     Route::livewire('/menus/edit/{menu}', 'admin::pages.menu.edit-menu')->name('admin.menu.edit');
+
+    //bookings
+    Route::livewire('/bookings', 'admin::pages.booking.view-booking')->name('admin.booking.view');
+    Route::livewire('/bookings/pending', 'admin::pages.booking.view-pending-booking')->name('admin.booking.pending');
+    Route::livewire('/bookings/confirmed', 'admin::pages.booking.view-confirmed-booking')->name('admin.booking.confirmed');
+    Route::livewire('/bookings/cancelled', 'admin::pages.booking.view-cancelled-booking')->name('admin.booking.cancelled');
+    
 });
 
 Broadcast::routes();

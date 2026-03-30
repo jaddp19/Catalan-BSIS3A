@@ -6,6 +6,10 @@ use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
+    protected $policies = [
+
+        \App\Models\User::class => \App\Policies\UserPolicy::class,
+    ];
     /**
      * Register any application services.
      */
@@ -13,7 +17,7 @@ class AppServiceProvider extends ServiceProvider
     {
         //
     }
-
+    
     /**
      * Bootstrap any application services.
      */
